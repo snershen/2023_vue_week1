@@ -26,8 +26,8 @@
               <tbody>
                 <tr v-for="product in productList" :key="product.id">
                   <td width="150">{{ product.title }}</td>
-                  <td width="120">{{product.origin_price }}</td>
-                  <td width="120">{{ product.price}}</td>
+                  <td width="120">{{ product.origin_price }}</td>
+                  <td width="120">{{ product.price }}</td>
                   <td width="150">
                     <span class="text-success" v-if="product.is_enabled">啟用</span>
                     <span v-else>未啟用</span>
@@ -47,10 +47,10 @@
             <template v-if="tempProduct.title">
               <div class="card mb-3">
                 <div v-if="!otherImg">
-                  <img :src="tempProduct.imageUrl" class="card-img-top primary-image" alt="主圖" />
+                  <img :src="tempProduct.imageUrl" class="card-img-top primary-image" :alt="tempProduct.title" />
                 </div>
                 <div v-else>
-                  <img :src="otherImg" class="card-img-top primary-image" alt="主圖" />
+                  <img :src="otherImg" class="card-img-top primary-image" :alt="tempProduct.title" />
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">
@@ -58,16 +58,16 @@
                     <span class="badge bg-primary ms-2">{{ tempProduct.category }}</span>
                   </h5>
                   <p class="card-text">商品描述：{{ tempProduct.description }}</p>
-                  <p class="card-text">商品內容：{{ tempProduct.content}}</p>
+                  <p class="card-text">商品內容：{{ tempProduct.content }}</p>
                   <div class="d-flex">
-                    <p class="card-text me-2">{{ tempProduct.price}}</p>
-                    <p class="card-text text-secondary"><del>{{tempProduct.origin_price }}</del></p>
-                    元 / {{ tempProduct.unit}}
+                    <p class="card-text me-2">{{ tempProduct.price }}</p>
+                    <p class="card-text text-secondary"><del>{{ tempProduct.origin_price }}</del></p>
+                    元 / {{ tempProduct.unit }}
                   </div>
                 </div>
               </div>
               <template v-for="(img,index) in tempProduct. imagesUrl" :key="index">
-                <img :src="img" alt="" class="images m-2" @click="getOtherImg(img)" />
+                <img :src="img" :alt="tempProduct.title" class="images m-2" @click="getOtherImg(img)" />
               </template>
             </template>
             <p class="text-secondary" v-else>請選擇一個商品查看</p>
