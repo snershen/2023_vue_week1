@@ -24,8 +24,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="product in productList">
-                  <td width="150">{{product.title }}</td>
+                <tr v-for="product in productList" :key="product.id">
+                  <td width="150">{{ product.title }}</td>
                   <td width="120">{{product.origin_price }}</td>
                   <td width="120">{{ product.price}}</td>
                   <td width="150">
@@ -40,7 +40,7 @@
                 </tr>
               </tbody>
             </table>
-            <p>目前有 <span>{{ productList.length}}</span> 項產品</p>
+            <p>目前有 <span>{{ productList.length }}</span> 項產品</p>
           </div>
           <div class="col-md-6">
             <h2>單一產品細節</h2>
@@ -55,7 +55,7 @@
                 <div class="card-body">
                   <h5 class="card-title">
                     {{ tempProduct.title }}
-                    <span class="badge bg-primary ms-2">{{tempProduct.category }}</span>
+                    <span class="badge bg-primary ms-2">{{ tempProduct.category }}</span>
                   </h5>
                   <p class="card-text">商品描述：{{ tempProduct.description }}</p>
                   <p class="card-text">商品內容：{{ tempProduct.content}}</p>
@@ -66,7 +66,7 @@
                   </div>
                 </div>
               </div>
-              <template v-for="img in tempProduct. imagesUrl">
+              <template v-for="(img,index) in tempProduct. imagesUrl" :key="index">
                 <img :src="img" alt="" class="images m-2" @click="getOtherImg(img)" />
               </template>
             </template>
